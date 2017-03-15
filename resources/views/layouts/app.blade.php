@@ -85,5 +85,15 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        @if(Session::has('success'))
+            noty({
+                type: 'success',
+                layout: 'bottomLeft',
+                timeout: 2220,
+                text: '{{ Session::get('success') }}'
+            });
+        @endif
+    </script>
 </body>
 </html>

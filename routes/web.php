@@ -15,10 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ch', function () {
+    return \App\User::find(5)->add_friend(3);
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::post('/profile/update', 'ProfileController@update')->name('profile.update');
     Route::get('/profile/{slug}', 'ProfileController@index')->name('profile');
 });
